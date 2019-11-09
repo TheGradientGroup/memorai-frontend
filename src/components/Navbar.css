@@ -1,0 +1,13 @@
+a.navbar-item.special {
+    color: white !important;
+    background: #008ef4 !important;
+}
+
+.navbar-menu {
+    background: #008ef4 !important;
+}
+
+a.special.navbar-item:hover, .navbar-item.current {
+    color: #008ef4 !important;
+    background: white !important;
+}
