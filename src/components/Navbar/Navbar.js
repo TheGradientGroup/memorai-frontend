@@ -47,7 +47,10 @@ class Navbar extends Component {
                     <div className="navbar-start">
                         <NavbarLink to="/decks" hidden={!loggedIn}>
                             My Decks
-                            </NavbarLink>
+                        </NavbarLink>
+                        <NavbarLink to="/create" hidden={!loggedIn}>
+                            Create Deck
+                        </NavbarLink>
                     </div>
                     <div className="navbar-end">
                         <NavbarLink to="#" onClick={this.signIn.bind(this)} hidden={loggedIn}>

@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import Decks from './pages/Decks';
 import DeckDetail from './pages/DeckDetail';
 import StudyDeck from './pages/StudyDeck';
+import CreateDeck from './pages/CreateDeck';
 
 // navbar import
 import Navbar from './components/Navbar/Navbar';
@@ -41,6 +42,9 @@ class App extends Component {
       <Router>
         <Navbar isLoggedIn={this.state.authUser !== null} />
         <Switch>
+          <Route exact path="/create">
+            <CreateDeck curUser={this.state.authUser} />
+          </Route>
           <Route exact path="/decks">
             <Decks curUser={this.state.authUser} />
           </Route>
