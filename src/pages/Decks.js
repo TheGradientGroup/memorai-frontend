@@ -1,17 +1,9 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../components/Firebase'
 import DecksCard from '../components/DecksCard/DecksCard'
+import PaddedContainer from '../components/PaddedContainer/PaddedContainer';
+
 import apiStub from '../apiStub';
-
-
-const CardContainer = props => (
-    <div className="container">
-        <div className="columns">
-            <div className="column is-2 is-hidden-mobile"></div>
-            <div className="column">{props.children}</div>
-            <div className="column is-2 is-hidden-mobile"></div>
-        </div></div>
-);
 
 class Decks extends Component {
     constructor(props) {
@@ -54,15 +46,15 @@ class Decks extends Component {
                     <h2 className="subtitle is-4">
                         Study Queue
                     </h2>
-                    <CardContainer>
+                    <PaddedContainer>
                         {queue}
-                    </CardContainer>
+                    </PaddedContainer>
                     <h2 className="subtitle is-4">
                         Other Decks
                     </h2>
-                    <CardContainer>
+                    <PaddedContainer>
                         {other}
-                    </CardContainer>
+                    </PaddedContainer>
                 </div>
             </section>
         );
