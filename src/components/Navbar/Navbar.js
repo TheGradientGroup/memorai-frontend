@@ -18,6 +18,16 @@ class _NavbarLink extends Component {
 var NavbarLink = withRouter(_NavbarLink);
 
 class Navbar extends Component {
+    signOut() { 
+        this.props.firebase.doSignOut().then(() => { 
+            this.props.history.push('/');
+        })
+    }
+    signIn() { 
+        this.props.firebase.doSignIn().then(() => { 
+            this.props.history.push('/decks');
+        })
+    }
     render() {
         var loggedIn = this.props.isLoggedIn;
         return (
@@ -42,10 +52,13 @@ class Navbar extends Component {
                             </NavbarLink>
                     </div>
                     <div className="navbar-end">
-                        <NavbarLink to="#" onClick={() => this.props.firebase.doSignIn()} hidden={loggedIn}>
-                            Login
+                        <NavbarLink to="#" onClick={this.signIn.bind(this)} hidden={loggedIn}>
+                            <span className="icon">
+                                <i class="fab fa-google"></i>
+                            </span>
+                            &nbsp; Sign in with Google
                         </NavbarLink>
-                        <NavbarLink to="#" onClick={() => this.props.firebase.doSignOut()} hidden={!loggedIn}>
+                        <NavbarLink to="#" onClick={this.signOut.bind(this)} hidden={!loggedIn}>
                             Log out&nbsp;<strong>{this.props.firebase.auth.currentUser ? this.props.firebase.auth.currentUser.displayName : ''}</strong>
                         </NavbarLink>
                     </div>
@@ -56,4 +69,4 @@ class Navbar extends Component {
     }
 }
 
-export default withFirebase(Navbar);
+export default withRouter(withFirebase(Navbar));

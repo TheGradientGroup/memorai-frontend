@@ -21,14 +21,20 @@ class Firebase {
         this.isLoggedIn = false;
     }
     doSignIn() {
-        this.auth.signInWithPopup(this.googleProvider).then(() => {
-            this.isLoggedIn = true;
+        return new Promise((resolve, reject) => { 
+            this.auth.signInWithPopup(this.googleProvider).then(() => {
+                this.isLoggedIn = true;
+                resolve();
+            }).catch(() => reject());
         })
     }
     doSignOut() {
-        this.auth.signOut().then(() => {
-            this.isLoggedIn = false;
-        });
+        return new Promise((resolve, reject) => { 
+            this.auth.signOut().then(() => {
+                this.isLoggedIn = false;
+                resolve();
+            }).catch(() => reject());
+        })   
     }
 }
 

@@ -15,3 +15,8 @@ a.special.navbar-item:hover, .navbar-item.current {
 .hidden {
     display: none;    
 }
+
+.tag.is-memorai-blue {
+    color: white;
+    background: #008ef4;
+}
