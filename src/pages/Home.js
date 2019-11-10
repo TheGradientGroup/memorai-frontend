@@ -5,7 +5,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <section className="hero is-info is-medium" style={{background: '#008EF4'}}>
+                <section className="hero is-info is-large" style={{background: '#008EF4'}}>
                     <div className="hero-body">
                         <div className="container has-text-centered">
                             <h1 className="title">
