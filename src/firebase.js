@@ -19,10 +19,12 @@ class Firebase {
         this.googleProvider = new app.auth.GoogleAuthProvider();
         this.auth = app.auth();
         this.isLoggedIn = false;
+        this.token = null;
     }
     doSignIn() {
         return new Promise((resolve, reject) => { 
             this.auth.signInWithPopup(this.googleProvider).then(() => {
+                this.token = this.auth.currentUser.getIdToken();
                 this.isLoggedIn = true;
                 resolve();
             }).catch(() => reject());
@@ -31,6 +33,7 @@ class Firebase {
     doSignOut() {
         return new Promise((resolve, reject) => { 
             this.auth.signOut().then(() => {
+                this.token = null;
                 this.isLoggedIn = false;
                 resolve();
             }).catch(() => reject());

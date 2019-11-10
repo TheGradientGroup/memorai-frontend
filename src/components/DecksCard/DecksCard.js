@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import classNames from 'classnames';
 
 class DecksCard extends Component {
+    cardClicked() { 
+        this.props.history.push(`/decks/${this.props.deckID ? this.props.deckID : ''}`);
+    }
     render() {
         return (
-            <div className="box columns is-mobile" style={{ border: '1px solid #eeeeee', cursor: 'pointer', marginBottom: '40px' }}>
+            <div className="box columns is-mobile" style={{ border: '1px solid #eeeeee', cursor: 'pointer', marginBottom: '40px' }} onClick={this.cardClicked.bind(this)}>
                 <div className="column is-8">
                     <h5 className="title is-5">{this.props.title || 'Card Title'}</h5>
                     <h5 className="subtitle is-6">{this.props.subtitle || 'Subtitle'}</h5>
@@ -19,4 +23,4 @@ class DecksCard extends Component {
     }
 }
 
-export default DecksCard;
+export default withRouter(DecksCard);

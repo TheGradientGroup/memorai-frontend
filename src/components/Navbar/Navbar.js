@@ -51,7 +51,7 @@ class Navbar extends Component {
                     <div className="navbar-end">
                         <NavbarLink to="#" onClick={this.signIn.bind(this)} hidden={loggedIn}>
                             <span className="icon">
-                                <i class="fab fa-google"></i>
+                                <i className="fab fa-google"></i>
                             </span>
                             &nbsp; Sign in with Google
                         </NavbarLink>
