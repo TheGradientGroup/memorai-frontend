@@ -11,3 +11,7 @@ a.special.navbar-item:hover, .navbar-item.current {
     color: #008ef4 !important;
     background: white !important;
 }
+
+.hidden {
+    display: none;    
+}

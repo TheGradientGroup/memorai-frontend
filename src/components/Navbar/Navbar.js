@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { withFirebase } from '../Firebase';
 import classNames from 'classnames';
-import logo from '../logo-inverted.svg';
+import logo from '../../logo-inverted.svg';
 import './Navbar.css';
 
 class _NavbarLink extends Component {
     render() {
-        console.log(this.props)
         return (
-            <Link to={this.props.to} className={classNames('navbar-item', 'special')}>
+            <Link to={this.props.to} onClick={this.props.onClick} className={classNames('navbar-item', 'special', { 'hidden': this.props.hidden })}>
                 {this.props.children}
             </Link>
         );
@@ -19,6 +19,7 @@ var NavbarLink = withRouter(_NavbarLink);
 
 class Navbar extends Component {
     render() {
+        var loggedIn = this.props.isLoggedIn;
         return (
             <div className="navbar is-dark" style={{ background: '#008EF4' }}>
                 <div className="navbar-brand">
@@ -35,15 +36,24 @@ class Navbar extends Component {
                     <div className="navbar-start">
                         <NavbarLink to="/">
                             Home
+                            </NavbarLink>
+                        <NavbarLink to="/decks" hidden={!loggedIn}>
+                            My Decks
+                            </NavbarLink>
+                    </div>
+                    <div className="navbar-end">
+                        <NavbarLink to="#" onClick={() => this.props.firebase.doSignIn()} hidden={loggedIn}>
+                            Login
                         </NavbarLink>
-                        <NavbarLink to="/cards">
-                            Hi
+                        <NavbarLink to="#" onClick={() => this.props.firebase.doSignOut()} hidden={!loggedIn}>
+                            Log out&nbsp;<strong>{this.props.firebase.auth.currentUser ? this.props.firebase.auth.currentUser.displayName : ''}</strong>
                         </NavbarLink>
                     </div>
                 </div>
             </div>
+
         );
     }
 }
 
-export default Navbar;
+export default withFirebase(Navbar);
