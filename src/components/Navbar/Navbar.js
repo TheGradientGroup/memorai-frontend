@@ -18,13 +18,13 @@ class _NavbarLink extends Component {
 var NavbarLink = withRouter(_NavbarLink);
 
 class Navbar extends Component {
-    signOut() { 
-        this.props.firebase.doSignOut().then(() => { 
+    signOut() {
+        this.props.firebase.doSignOut().then(() => {
             this.props.history.push('/');
         })
     }
-    signIn() { 
-        this.props.firebase.doSignIn().then(() => { 
+    signIn() {
+        this.props.firebase.doSignIn().then(() => {
             this.props.history.push('/decks');
         })
     }
@@ -44,9 +44,6 @@ class Navbar extends Component {
                 </div>
                 <div className="navbar-menu is-active">
                     <div className="navbar-start">
-                        <NavbarLink to="/">
-                            Home
-                            </NavbarLink>
                         <NavbarLink to="/decks" hidden={!loggedIn}>
                             My Decks
                             </NavbarLink>
