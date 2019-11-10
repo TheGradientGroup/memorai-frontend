@@ -10,6 +10,7 @@ import { withFirebase } from './components/Firebase';
 import Home from './pages/Home';
 import Decks from './pages/Decks';
 import DeckDetail from './pages/DeckDetail';
+import StudyDeck from './pages/StudyDeck';
 
 // navbar import
 import Navbar from './components/Navbar/Navbar';
@@ -45,6 +46,9 @@ class App extends Component {
           </Route>
           <Route path="/decks/:deck">
             <DeckDetail curUser={this.state.authUser} />
+          </Route>
+          <Route path="/study/:deck">
+            <StudyDeck curUser={this.state.authUser} />
           </Route>
           <Route path="/">
             <Home />

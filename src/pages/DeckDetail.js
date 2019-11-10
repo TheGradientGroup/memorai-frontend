@@ -41,11 +41,6 @@ class DeckDetail extends Component {
                     <br />
                     <PaddedContainer size={2}>
                         <h3 className="title is-3 has-text-centered">Deck Overview</h3>
-                        {/* <div className="columns">
-                            <div className="column"><h4 className="title is-5 has-text-centered">Term</h4></div>
-                            <div className="column is-1 is-hidden-mobile"></div>
-                            <div className="column"><h4 className="title is-5 has-text-centered">Definition</h4></div>
-                        </div> */}
                         <Flashcard term="Quark" definition="I'm not a physicist." />
                         <Flashcard term="Gluon" definition="Glue stuff?" />
                         <Flashcard term="Muon" definition="The milk-giver of the universe. (Moo!)" />

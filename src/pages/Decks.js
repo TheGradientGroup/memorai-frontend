@@ -39,17 +39,15 @@ class Decks extends Component {
             .map(itm => <DecksCard key={itm.deckID} title={itm.title} subtitle={itm.description} numDue={itm.numDue} deckID={itm.deckID} />);
         return (
             <section className="section">
-                <h1 className="title has-text-centered">
-                    My Decks
-                </h1>
+               <h1 className="title is-2">My Decks</h1>
                 <div className="container">
-                    <h2 className="subtitle is-4">
+                    <h2 className="subtitle is-4 has-text-centered">
                         Study Queue
                     </h2>
                     <PaddedContainer>
                         {queue}
                     </PaddedContainer>
-                    <h2 className="subtitle is-4">
+                    <h2 className="subtitle is-4 has-text-centered">
                         Other Decks
                     </h2>
                     <PaddedContainer>
