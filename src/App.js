@@ -15,7 +15,7 @@ import Decks from './pages/Decks';
 import Navbar from './components/Navbar/Navbar';
 
 class App extends Component {
-  constructor(props) { 
+  constructor(props) {
     super(props);
     this.state = {
       authUser: null
@@ -38,10 +38,13 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Navbar isLoggedIn={this.state.authUser !== null}/>
+        <Navbar isLoggedIn={this.state.authUser !== null} />
         <Switch>
-          <Route path="/decks">
-            <Decks />
+          <Route exact path="/decks">
+            <Decks curUser={this.state.authUser} />
+          </Route>
+          <Route path="/decks/:deck">
+            <div>hi</div>
           </Route>
           <Route path="/">
             <Home />

@@ -18,8 +18,6 @@ class Firebase {
         app.initializeApp(firebaseConfig);
         this.googleProvider = new app.auth.GoogleAuthProvider();
         this.auth = app.auth();
-        this.isLoggedIn = false;
-        this.token = null;
     }
     doSignIn() {
         return new Promise((resolve, reject) => { 
@@ -31,10 +29,9 @@ class Firebase {
         })
     }
     doSignOut() {
+        console.log('sign out triggered');
         return new Promise((resolve, reject) => { 
             this.auth.signOut().then(() => {
-                this.token = null;
-                this.isLoggedIn = false;
                 resolve();
             }).catch(() => reject());
         })   

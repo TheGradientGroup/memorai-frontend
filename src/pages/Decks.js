@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../components/Firebase'
 import DecksCard from '../components/DecksCard/DecksCard'
+import apiStub from '../apiStub';
 
 
 const CardContainer = props => (
@@ -19,10 +20,31 @@ class Decks extends Component {
             cardInfo: null
         }
     }
+
+    getCardInfo() { 
+        if (!this.props.curUser) return;
+        this.props.curUser.getIdToken(true).then(token => {
+            apiStub.getCardInfo({ owner: token, homescreen: true }).then(res => res.json()).then(data => this.setState({cardInfo: data}));
+        });
+    }
+
     componentDidMount() {
-        // getCardInfo()
+        this.getCardInfo();
+     }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.curUser !== prevProps.curUser) {
+            this.getCardInfo();
+        }
     }
     render() {
+        var queue = this.state.cardInfo == null ? null : this.state.cardInfo
+            .filter(itm => itm.numDue > 0)
+            .sort((itm1, itm2) => itm1.numDue < itm2.numDue ? 1 : ((itm1.numDue === itm2.numDue) ? 0 : -1))
+            .map(itm => <DecksCard key={itm.deckID} title={itm.title} subtitle={itm.description} numDue={itm.numDue} deckID={itm.deckID} />);
+        var other = this.state.cardInfo == null ? null : this.state.cardInfo
+            .filter(itm => itm.numDue <= 0)
+            .map(itm => <DecksCard key={itm.deckID} title={itm.title} subtitle={itm.description} numDue={itm.numDue} deckID={itm.deckID} />);
         return (
             <section className="section">
                 <h1 className="title has-text-centered">
@@ -33,15 +55,13 @@ class Decks extends Component {
                         Study Queue
                     </h2>
                     <CardContainer>
-                        <DecksCard title="Memeology" subtitle="Okay, boomer." numDue="20" deckID="a47sfj4" />
-                        <DecksCard title="Fundamentals of Quantum Mechanics" subtitle="Fun, I guess." numDue="10" deckID="a37sfj4" />
+                        {queue}
                     </CardContainer>
                     <h2 className="subtitle is-4">
                         Other Decks
                     </h2>
                     <CardContainer>
-                        <DecksCard title="Stochastic Optimization" subtitle="This is scary." numDue="0" />
-                        <DecksCard title="Linear Algebra" subtitle="Determinant my future." numDue="0" />
+                        {other}
                     </CardContainer>
                 </div>
             </section>

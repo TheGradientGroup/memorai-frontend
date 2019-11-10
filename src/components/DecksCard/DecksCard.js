@@ -15,7 +15,7 @@ class DecksCard extends Component {
                 </div>
                 <div className="column has-text-right">
                     <span className={classNames('tag', { 'is-memorai-blue': this.props.numDue == null || this.props.numDue >= 0 }, { 'is-warning': this.props.numDue >= 40 })}>
-                        {this.props.numDue || '∞'} cards due
+                        {this.props.numDue} cards due
                     </span>
                 </div>
             </div>
